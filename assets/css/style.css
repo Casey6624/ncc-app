@@ -4,6 +4,12 @@ body {
     font-family: 'Open Sans Condensed', sans-serif !important;
 }
 
+html {
+    background: url("../img/city.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* LOGIN PAGE CSS */
 
 .loginForm {
@@ -36,11 +42,14 @@ body {
 
 /* NAVBAR */
 #navBarContainer {
-    background: #003fa1;
     text-align: center;
 }
 
-#navbarLogo{
+#navBarItem{
+    color: white;
+}
+
+#navbarLogo {
     border-radius: 15px 15px 0 0;
 }
 
@@ -48,3 +57,4 @@ body {
 .bookingsController {
     margin: 50px;
 }
+

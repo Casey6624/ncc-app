@@ -18,51 +18,78 @@
     </div>
 
     <div class="navToggleLinks" ng-controller="navigationController">
-        <ul class="nav md-pills nav-justified">
+        <ul class="nav navbar-dark bg-dark md-pills nav-justified">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink()">BOOKINGS</a>
+                <a id="navBarItem" class="nav-link active" name="BOOKINGS" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink($event)">BOOKINGS</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink()">ROUTES</a>
+                <a id="navBarItem" class="nav-link" name="ROUTES" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink($event)">ROUTES</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink()">VEHICLES</a>
+                <a id="navBarItem" class="nav-link" name="VEHICLES" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink($event)">VEHICLES</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink()">LOG OUT</a>
+                <a id="navBarItem" class="nav-link" name="LO" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink($event)">LOG OUT</a>
             </li>
         </ul>
+
+        <h1>{{username}}</h1>
+
+        <!-- BOOKING FORMS -->
+        <div class="bookingsController" ng-controller="bookingController" ng-show="bookingShow">
+
+            <strong><h1>CURRENT BOOKINGS</h1></strong>
+            <input class="form-control" type="text" ng-model="bookingSearch" placeholder="Filter By Name" />
+            <table class="table table-dark">
+                <tr>
+                    <th scope="col">Passenger Name</th>
+                    <th scope="col">Pick Up Location</th>
+                    <th scope="col">Drop Off Location</th>
+                </tr>
+                <tr scope="row" ng-repeat="booking in bookings | filter:bookingSearch">
+                    <td>{{booking.PassengerName}}</td>
+                    <td>{{booking.PickupLocation}}</td>
+                    <td>{{booking.DropOffLocation}}</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="bookingsController" ng-controller="routesController" ng-show="routeShow">
+
+            <strong><h1>CURRENT ROUTES</h1></strong>
+            <input class="form-control" type="text" ng-model="routeSearch" placeholder="Filter By Name" />
+            <table class="table table-dark">
+                <tr>
+                    <th scope="col">Route Start Point</th>
+                    <th scope="col">Route End Point</th>
+                </tr>
+                <tr scope="row" ng-repeat="route in routes | filter:routeSearch">
+                    <td>{{route.RouteStartPoint}}</td>
+                    <td>{{route.RouteEndPoint}}</td>
+                </tr>
+            </table>
+
+        </div>
+
+
+
     </div>
-
-
-    <div class="bookingsController" ng-controller="bookingController">
-
-        <strong><h1>CURRENT BOOKINGS</h1></strong>
-        <input class="form-control" type="text" ng-model="bookingSearch" placeholder="Filter By Name" />
-        <table class="table">
-            <tr>
-                <th scope="col">Passenger Name</th>
-                <th scope="col">Pick Up Location</th>
-                <th scope="col">Drop Off Location</th>
-            </tr>
-            <tr scope="row" ng-repeat="booking in bookings | filter:bookingSearch">
-                <td>{{booking.PassengerName}}</td>
-                <td>{{booking.PickupLocation}}</td>
-                <td>{{booking.DropOffLocation}}</td>
-            </tr>
-        </table>
-
-    </div>
-
 
     <!-- KEEP THESE SCRIPTS AT THE BOTTOM  -->
     <!-- App Scripts  -->
     <script src="app/nccapp.js"></script>
+    <!-- Bookings  -->
     <script src="app/booking/bookingmodule.js"></script>
     <script src="app/booking/bookingcontroller.js"></script>
+    <!-- Auth  -->
     <script src="app/authentication/authenticationmodule.js"></script>
-    <script src="app/navigation/navigationmodule.js" ></script>
+    <!-- Navigation  -->
+    <script src="app/navigation/navigationmodule.js"></script>
     <script src="app/navigation/navigationcontroller.js"></script>
+    <!-- Routes  -->
+    <script src="app/route/routemodule.js"></script>
+    <script src="app/route/routecontroller.js"></script>
 
     <!-- Libraries  -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
