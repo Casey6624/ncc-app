@@ -17,7 +17,7 @@
         Error: {{apiErrorMessage | json}}
     </div>
 
-    <div class="navToggleLinks">
+    <div class="navToggleLinks" ng-controller="navigationController">
         <ul class="nav md-pills nav-justified">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink()">BOOKINGS</a>
@@ -61,6 +61,8 @@
     <script src="app/booking/bookingmodule.js"></script>
     <script src="app/booking/bookingcontroller.js"></script>
     <script src="app/authentication/authenticationmodule.js"></script>
+    <script src="app/navigation/navigationmodule.js" ></script>
+    <script src="app/navigation/navigationcontroller.js"></script>
 
     <!-- Libraries  -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

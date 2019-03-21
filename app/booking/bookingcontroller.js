@@ -15,11 +15,5 @@
             })
     }
 
-    $scope.toggleMenuLink = function () {
-        console.log("sss")
-    }
-
-
-
     $scope.init()
 })
