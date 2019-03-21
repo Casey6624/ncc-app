@@ -1,0 +1,50 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+
+body {
+    font-family: 'Open Sans Condensed', sans-serif !important;
+}
+
+/* LOGIN PAGE CSS */
+
+.loginForm {
+    margin-top: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginForm input {
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+}
+
+#loginBtn {
+    margin: 5px;
+    width: 100%;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+}
+
+/* HOME PAGE CSS */
+
+/* NAVBAR */
+#navBarContainer {
+    background: #003fa1;
+    text-align: center;
+}
+
+#navbarLogo{
+    border-radius: 15px 15px 0 0;
+}
+
+/* Bookings Controller Container */
+.bookingsController {
+    margin: 50px;
+}
