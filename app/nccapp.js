@@ -1,1 +1,1 @@
-﻿angular.module("nccApp", ["nccAuthentication", "nccBooking", "nccNavigation", "nccRoutes"])
+﻿angular.module("nccApp", ["nccAuthentication", "nccBooking", "nccNavigation", "nccRoutes", "nccVehicle"])

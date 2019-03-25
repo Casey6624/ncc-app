@@ -8,7 +8,6 @@
         $http.get($scope.bookingAPIUrl)
             .success(function (response) {
                 $scope.bookings = response;
-                console.log($scope.bookings)
             })
             .error(function (error) {
                 $scope.errorMessage = error;

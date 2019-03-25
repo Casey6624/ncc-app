@@ -8,7 +8,6 @@
         $http.get($scope.routesAPIUrl)
             .success(function (response) {
                 $scope.routes = response;
-                console.log($scope.routes)
             })
             .error(function (error) {
                 $scope.errorMessage = error;

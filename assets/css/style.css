@@ -56,5 +56,21 @@ html {
 /* Bookings Controller Container */
 .bookingsController {
     margin: 50px;
+    padding-bottom: 15px;
 }
 
+#delIcon{
+    cursor: pointer;
+}
+
+#delIcon:hover{
+    color: blue;
+}
+
+#editIcon {
+    cursor: pointer;
+}
+
+#editIcon:hover {
+    color: blue;
+}

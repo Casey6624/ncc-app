@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="nccApp">
 <head>
     <meta charset="utf-8" />
     <title>NCC | Welcome</title>
     <link href="assets/img/favicon.ico" rel="shortcut icon" type="image/png" />
     <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
     <div id="navBarContainer">
@@ -12,11 +13,9 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <div class="alert alert-warning" role="alert" ng-show="apiErrorMessage">
         Error: {{apiErrorMessage | json}}
     </div>
-
     <div class="navToggleLinks" ng-controller="navigationController">
         <ul class="nav navbar-dark bg-dark md-pills nav-justified">
             <li class="nav-item">
@@ -32,12 +31,9 @@
                 <a id="navBarItem" class="nav-link" name="LO" data-toggle="tab" href="#" role="tab" ng-click="toggleMenuLink($event)">LOG OUT</a>
             </li>
         </ul>
-
         <h1>{{username}}</h1>
-
         <!-- BOOKING FORMS -->
         <div class="bookingsController" ng-controller="bookingController" ng-show="bookingShow">
-
             <strong><h1>CURRENT BOOKINGS</h1></strong>
             <input class="form-control" type="text" ng-model="bookingSearch" placeholder="Filter By Name" />
             <table class="table table-dark">
@@ -52,11 +48,8 @@
                     <td>{{booking.DropOffLocation}}</td>
                 </tr>
             </table>
-
         </div>
-
         <div class="bookingsController" ng-controller="routesController" ng-show="routeShow">
-
             <strong><h1>CURRENT ROUTES</h1></strong>
             <input class="form-control" type="text" ng-model="routeSearch" placeholder="Filter By Name" />
             <table class="table table-dark">
@@ -69,13 +62,59 @@
                     <td>{{route.RouteEndPoint}}</td>
                 </tr>
             </table>
+        </div>
+
+        <div class="bookingsController" ng-controller="vehicleController" ng-show="vehicleShow">
+            <strong><h1>VEHICLES</h1></strong>
+            <input class="form-control" type="text" ng-model="vehicleSearch" placeholder="Search For Vehicle" />
+            <table class="table table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">CAPACITY</th>
+                    <th scope="col">DRIVER</th>
+                    <th scope="col">MAKE</th>
+                    <th scope="col">MODEL</th>
+                    <th scope="col">REGISTRATION</th>
+                    <th scope="col">-</th>
+                </tr>
+                <tr scope="row" ng-repeat="vehicle in vehicles | filter:vehicleSearch">
+                    <td>{{vehicle.Id}}</td>
+                    <td>{{vehicle.Capacity}}</td>
+                    <td>{{vehicle.Driver}}</td>
+                    <td>{{vehicle.Make}}</td>
+                    <td>{{vehicle.Model}}</td>
+                    <td>{{vehicle.Registration}}</td>
+                    <td>
+                        <i ng-click="editVehicle(vehicle.Id)" id="editIcon" class="fas fa-edit"></i>
+                        |
+                        <i ng-click="delVehicle(vehicle.Id)" id="delIcon" class="fas fa-trash-alt"></i>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
-
-
     </div>
-
     <!-- KEEP THESE SCRIPTS AT THE BOTTOM  -->
     <!-- App Scripts  -->
     <script src="app/nccapp.js"></script>
@@ -90,6 +129,9 @@
     <!-- Routes  -->
     <script src="app/route/routemodule.js"></script>
     <script src="app/route/routecontroller.js"></script>
+    <!-- Vehicles  -->
+    <script src="app/vehicle/vehiclemodule.js"></script>
+    <script src="app/vehicle/vehiclecontroller.js"></script>
 
     <!-- Libraries  -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
