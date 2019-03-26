@@ -39,7 +39,7 @@
 
     $scope.confirmAddPassenger = function () {
         // Check to see if we can add passengers + current passengers and be below vehicle capacity
-        if ($scope.currentVehicleCapacity + $scope.requestedPassengers < $scope.bookingVehicleCapacity) {
+        if ($scope.currentVehicleCapacity + $scope.requestedPassengers <= $scope.bookingVehicleCapacity) {
             let addPassengerObj
             // Get all booking details
             $http.get(`${$scope.bookingAPIUrl}/${$scope.bookingToAddPassenger}`)
