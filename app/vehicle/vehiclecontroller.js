@@ -18,6 +18,7 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
     $scope.addVehicle = function () {
 
         let vehicleDetails = {
+            id: $scope.vehicles.length,
             Capacity: $scope.vehicleCapacity,
             Driver: $scope.vehicleDriver,
             Make: $scope.vehicleMake,
@@ -37,7 +38,8 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
     }
 
     $scope.showAddVehicle = function () {
-        $scope.isAdding = true
+        $scope.isAdding = !$scope.isAdding
+        $scope.isUpdating = false
     }
 
     $scope.cancelAddVehicle = function () {
@@ -48,6 +50,21 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
 
     $scope.editVehicle = function (Id) {
         console.log(`Edit vehicle with ID ${Id}`)
+
+        $http.get(`${$scope.vehicleAPIUrl}/${Id}`)
+            .success(function (res) {
+                $scope.editVehicleCapacity = res.Id
+                $scope.editVehicleDriver = res.Capacity
+                $scope.editVehicleMake = res.Make
+                $scope.editVehicleModel = res.Model
+                $scope.editVehicleRegistration = res.Registration
+            })
+            .error(function (error) {
+                $scope.errorMessage = error;
+            })
+        $scope.isAdding = false
+        $scope.isUpdating = true
+
     }
 
     $scope.delVehicle = function (Id) {

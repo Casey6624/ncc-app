@@ -105,6 +105,17 @@
                 <button class="btn btn-danger" ng-click="cancelAddVehicle()">Cancel</button>
             </div>
 
+            <div ng-show="isUpdating">
+                <h2>Edit Vehicle</h2>
+                <label>Capacity: <input ng-model="editVehicleCapacity" /></label><br />
+                <label>Driver: <input ng-model="editVehicleDriver" /></label><br />
+                <label>Make: <input ng-model="editVehicleMake" /></label><br />
+                <label>Model: <input ng-model="editVehicleModel" /></label><br />
+                <label>Registration: <input ng-model="editVehicleRegistration" /></label><br />
+                <button class="btn btn-success" ng-click="edit()">Edit</button>
+                <button class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            </div>
+
         </div>
 
     </div>
