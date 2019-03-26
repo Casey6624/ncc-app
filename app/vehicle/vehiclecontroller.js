@@ -27,7 +27,6 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
 
         $http.post($scope.vehicleAPIUrl, vehicleDetails)
             .success(function (res) {
-                console.log(res)
                 $scope.isAdding = false;
                 $scope.init()
             })
@@ -52,7 +51,6 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
 
 
     $scope.displayEditVehicle = function (Id) {
-        console.log(`Edit vehicle with ID ${Id}`)
 
         $http.get(`${$scope.vehicleAPIUrl}/${Id}`)
             .success(function (res) {

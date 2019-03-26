@@ -158,7 +158,13 @@
 
             <div ng-show="isAdding">
                 <h2>Add Vehicle</h2>
-                <label>Capacity: <input ng-model="vehicleCapacity" /></label><br />
+                <label>Capacity: 
+                    <select ng-model="vehicleCapacity">
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                    </select>    
+                </label><br />
                 <label>Driver: <input ng-model="vehicleDriver" /></label><br />
                 <label>Make: <input ng-model="vehicleMake" /></label><br />
                 <label>Model: <input ng-model="vehicleModel" /></label><br />
@@ -170,7 +176,13 @@
 
             <div ng-show="isUpdating">
                 <h2>Edit Vehicle </h2>
-                <label>Capacity: <input ng-model="editVehicleCapacity" /></label><br />
+                <label>Capacity: 
+                <select ng-model="editVehicleCapacity">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                </select>    
+                    </label><br />
                 <label>Driver: <input ng-model="editVehicleDriver" /></label><br />
                 <label>Make: <input ng-model="editVehicleMake" /></label><br />
                 <label>Model: <input ng-model="editVehicleModel" /></label><br />
