@@ -15,6 +15,36 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
             })
     }
 
+    $scope.addVehicle = function () {
+
+        let vehicleDetails = {
+            Capacity: $scope.vehicleCapacity,
+            Driver: $scope.vehicleDriver,
+            Make: $scope.vehicleMake,
+            Model: $scope.vehicleModel,
+            Registration: $scope.vehicleRegistration
+        }
+
+        $http.post($scope.vehicleAPIUrl, vehicleDetails)
+            .success(function (res) {
+                console.log(res)
+                $scope.isAdding = false;
+                $scope.init()
+            })
+            .error(function (error) {
+                $scope.errorMessage = error;
+            })
+    }
+
+    $scope.showAddVehicle = function () {
+        $scope.isAdding = true
+    }
+
+    $scope.cancelAddVehicle = function () {
+        $scope.isAdding = false
+    }
+
+
 
     $scope.editVehicle = function (Id) {
         console.log(`Edit vehicle with ID ${Id}`)

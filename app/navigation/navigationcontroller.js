@@ -1,5 +1,6 @@
 ﻿angular.module("nccNavigation").controller("navigationController", function ($scope) {
 
+
     $scope.toggleMenuLink = function ($event) {
 
         $scope.init = function () {
