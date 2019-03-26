@@ -18,13 +18,16 @@
 
     $scope.showAddingPassenger = function (vehicleId, bookingId, currentPassengers) {
 
+        $scope.bookingToAddPassenger = bookingId
+
         $http.get(`${$scope.vehicleAPIUrl}/${vehicleId}`)
             .success(function (res) {
                 $scope.bookingVehicleCapacity = res.Capacity
                 $scope.currentVehicleCapacity = currentPassengers
             })
             .error(function (error) {
-                $scope.errorMessage = error;
+                $scope.errorMessage = error
+                $scope.bookingToAddPassenger = null
             })
 
         $scope.isAddingPassenger = true
@@ -35,9 +38,39 @@
     }
 
     $scope.confirmAddPassenger = function () {
+        // Check to see if we can add passengers + current passengers and be below vehicle capacity
         if ($scope.currentVehicleCapacity + $scope.requestedPassengers < $scope.bookingVehicleCapacity) {
-            console.log("Yup, can add passengers")
+            let addPassengerObj
+            // Get all booking details
+            $http.get(`${$scope.bookingAPIUrl}/${$scope.bookingToAddPassenger}`)
+                .success(function (res) {
+                    addPassengerObj = {
+                        Id: $scope.bookingToAddPassenger,
+                        PassengerName: res.PassengerName,
+                        PickupLocation: res.PickupLocation,
+                        DropOffLocation: res.DropOffLocation,
+                        VehicleId: res.VehicleId,
+                        CurrentPassenger: res.CurrentPassenger + $scope.requestedPassengers
+                    }
+                    console.log(addPassengerObj)
+                    $http.put($scope.bookingAPIUrl, addPassengerObj)
+                        .success(function () {
+                            $scope.addPassengersError = false
+                            $scope.isAddingPassenger = false
+                            $scope.init()
+                        })
+                        .error(function (error) {
+                            $scope.errorMessage = error;
+                        })
+                })
+                .error(function (error) {
+                    $scope.errorMessage = error;
+                })
+
+            
+
         } else {
+            // show error alert if not
             $scope.addPassengersError = true
         }
     }
