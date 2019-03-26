@@ -10,7 +10,7 @@
       $scope.loginErrorMessage,
       ($scope.signedInShow = false),
       ($scope.signedOutShow = true);
-
+    $scope.manager = false;
     $scope.login = function() {
       let authDetails = {
         username: $scope.username,
@@ -30,6 +30,9 @@
             $scope.loginErrorMessage = false;
             $scope.signedInShow = true;
             $scope.signedOutShow = false;
+            if ($scope.role == 2) {
+              $scope.manager = true;
+            }
             console.log("Logged In!");
           }
         })

@@ -143,7 +143,7 @@
             >
           </li>
         </ul>
-        <h1>{{ username }}</h1>
+        <h1>Welcome {{ username }}</h1>
 
         <!-- BOOKING FORMS -->
         <div
@@ -317,12 +317,12 @@
             <tr>
               <th scope="col">Route Start Point</th>
               <th scope="col">Route End Point</th>
-              <th scope="col">Edit/Delete</th>
+              <th scope="col" ng-show="manager">Edit/Delete</th>
             </tr>
             <tr scope="row" ng-repeat="route in routes | filter:routeSearch">
               <td>{{ route.RouteStartPoint }}</td>
               <td>{{ route.RouteEndPoint }}</td>
-              <td>
+              <td ng-show="manager">
                 <i
                   ng-click="displayEditRoute(route.Id)"
                   id="editIcon"
@@ -393,7 +393,7 @@
               <th scope="col">MAKE</th>
               <th scope="col">MODEL</th>
               <th scope="col">REGISTRATION</th>
-              <th scope="col">Edit/Delete</th>
+              <th scope="col" ng-show="manager">Edit/Delete</th>
             </tr>
             <tr
               scope="row"
@@ -405,7 +405,7 @@
               <td>{{ vehicle.Make }}</td>
               <td>{{ vehicle.Model }}</td>
               <td>{{ vehicle.Registration }}</td>
-              <td>
+              <td ng-show="manager">
                 <i
                   ng-click="displayEditVehicle(vehicle.Id)"
                   id="editIcon"
