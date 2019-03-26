@@ -3,6 +3,7 @@
     $scope.bookings = []
 
     $scope.bookingAPIUrl = "http://webteach_net.hallam.shu.ac.uk/acesjas/api/booking"
+    $scope.vehicleAPIUrl = "http://webteach_net.hallam.shu.ac.uk/acesjas/api/vehicle"
 
     $scope.init = function () {
         $http.get($scope.bookingAPIUrl)
@@ -14,6 +15,32 @@
             })
     }
     $scope.init()
+
+    $scope.showAddingPassenger = function (vehicleId, bookingId, currentPassengers) {
+
+        $http.get(`${$scope.vehicleAPIUrl}/${vehicleId}`)
+            .success(function (res) {
+                $scope.bookingVehicleCapacity = res.Capacity
+                $scope.currentVehicleCapacity = currentPassengers
+            })
+            .error(function (error) {
+                $scope.errorMessage = error;
+            })
+
+        $scope.isAddingPassenger = true
+    }
+
+    $scope.closeAddPassenger = function () {
+        $scope.isAddingPassenger = false
+    }
+
+    $scope.confirmAddPassenger = function () {
+        if ($scope.currentVehicleCapacity + $scope.requestedPassengers < $scope.bookingVehicleCapacity) {
+            console.log("Yup, can add passengers")
+        } else {
+            $scope.addPassengersError = true
+        }
+    }
 
     $scope.addBooking = function () {
 

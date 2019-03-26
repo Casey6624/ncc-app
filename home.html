@@ -45,6 +45,9 @@
                     <th scope="col">Drop Off Location</th>
                     <th scope="col">Vehicle ID</th>
                     <th scope="col">Current Passengers</th>
+                    <th scope="col">Edit/Delete</th>
+                    <th scope="col">Add A Passenger</th>
+
                 </tr>
                 <tr scope="row" ng-repeat="booking in bookings | filter:bookingSearch">
                     <td>{{booking.PassengerName}}</td>
@@ -57,8 +60,23 @@
                         |
                         <i ng-click="delBooking(booking.Id)" id="delIcon" class="fas fa-trash-alt"></i>
                     </td>
+                    <td>
+                        <button class="btn btn-secondary" ng-click="showAddingPassenger(booking.VehicleId, booking.Id, booking.CurrentPassenger)">Add A Passenger</button>
+                    </td>
                 </tr>
             </table>
+
+            <div ng-show="isAddingPassenger">
+                <div class="alert alert-danger" role="alert" ng-show="addPassengersError">
+                    Too Many Passengers For This Booking! Vehicle can only carry <strong> {{bookingVehicleCapacity}} </strong>
+                </div>
+                <h2>Do you want to add passengers to this booking?</h2>
+                <label>Number Of Passengers: <input type="number" ng-model="requestedPassengers" /></label>
+                <p>Current Passengers: <span class="badge badge-pill badge-info">{{currentVehicleCapacity}}</span> </p>
+                <p>Max Passengers: <span class="badge badge-pill badge-danger">{{bookingVehicleCapacity}}</span> </p>
+                <button class="btn btn-danger" ng-click="closeAddPassenger()">Cancel</button>
+                <button class="btn btn-success" ng-click="confirmAddPassenger()">Confirm</button>
+            </div>
 
             <div ng-show="isAdding">
                 <h2>Add Booking</h2>
@@ -95,6 +113,7 @@
                 <tr>
                     <th scope="col">Route Start Point</th>
                     <th scope="col">Route End Point</th>
+                    <th scope="col">Edit/Delete</th>
                 </tr>
                 <tr scope="row" ng-repeat="route in routes | filter:routeSearch">
                     <td>{{route.RouteStartPoint}}</td>
@@ -140,6 +159,7 @@
                     <th scope="col">MAKE</th>
                     <th scope="col">MODEL</th>
                     <th scope="col">REGISTRATION</th>
+                    <th scope="col">Edit/Delete</th>
                 </tr>
                 <tr scope="row" ng-repeat="vehicle in vehicles | filter:vehicleSearch">
                     <td>{{vehicle.Id}}</td>
