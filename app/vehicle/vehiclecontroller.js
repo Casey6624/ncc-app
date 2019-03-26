@@ -8,7 +8,6 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
         $http.get($scope.vehicleAPIUrl)
             .success(function (response) {
                 $scope.vehicles = response;
-                console.log($scope.vehicles)
             })
             .error(function (error) {
                 $scope.errorMessage = error;
