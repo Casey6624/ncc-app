@@ -94,7 +94,17 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
     }
 
     $scope.delVehicle = function (Id) {
-        console.log(`Delete vehicle with ID ${Id}`)
+        let itemToDelete = $scope.vehicles.indexOf(Id)
+
+        $scope.vehicles.splice(itemToDelete, 1)
+
+        $http.delete(`${$scope.vehicleAPIUrl}/${Id}`)
+            .success(function (res) {
+                $scope.init()
+            })
+            .error(function (error) {
+                $scope.errorMessage = error;
+            })
     }
 
     $scope.init()
