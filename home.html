@@ -64,8 +64,8 @@
             </table>
         </div>
 
-        <div class="bookingsController" ng-controller="vehicleController" ng-show="showAddVehicle">
-            <strong><h1>VEHICLES</h1></strong>
+        <div class="bookingsController" ng-controller="vehicleController" ng-show="vehicleShow">
+            <strong><h1>VEHICLES </h1></strong>
             <button ng-click="showAddVehicle()" class="btn btn-success">Add Vehicle<i class="fas fa-plus"></i></button> <br />
             <input class="form-control" type="text" ng-model="vehicleSearch" placeholder="Search For Vehicle" />
             <table class="table table-dark">
@@ -86,7 +86,7 @@
                     <td>{{vehicle.Model}}</td>
                     <td>{{vehicle.Registration}}</td>
                     <td>
-                        <i ng-click="editVehicle(vehicle.Id)" id="editIcon" class="fas fa-edit"></i>
+                        <i ng-click="displayEditVehicle(vehicle.Id)" id="editIcon" class="fas fa-edit"></i>
                         |
                         <i ng-click="delVehicle(vehicle.Id)" id="delIcon" class="fas fa-trash-alt"></i>
                     </td>
@@ -106,13 +106,13 @@
             </div>
 
             <div ng-show="isUpdating">
-                <h2>Edit Vehicle</h2>
+                <h2>Edit Vehicle </h2>
                 <label>Capacity: <input ng-model="editVehicleCapacity" /></label><br />
                 <label>Driver: <input ng-model="editVehicleDriver" /></label><br />
                 <label>Make: <input ng-model="editVehicleMake" /></label><br />
                 <label>Model: <input ng-model="editVehicleModel" /></label><br />
                 <label>Registration: <input ng-model="editVehicleRegistration" /></label><br />
-                <button class="btn btn-success" ng-click="edit()">Edit</button>
+                <button class="btn btn-success" ng-click="submitEdit()">Edit</button>
                 <button class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
             </div>
 

@@ -46,15 +46,20 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
         $scope.isAdding = false
     }
 
+    $scope.cancelEdit = function () {
+        $scope.isUpdating = false
+    }
 
 
-    $scope.editVehicle = function (Id) {
+
+    $scope.displayEditVehicle = function (Id) {
         console.log(`Edit vehicle with ID ${Id}`)
 
         $http.get(`${$scope.vehicleAPIUrl}/${Id}`)
             .success(function (res) {
-                $scope.editVehicleCapacity = res.Id
-                $scope.editVehicleDriver = res.Capacity
+                $scope.editVehicleId = Id
+                $scope.editVehicleCapacity = res.Capacity
+                $scope.editVehicleDriver = res.Driver
                 $scope.editVehicleMake = res.Make
                 $scope.editVehicleModel = res.Model
                 $scope.editVehicleRegistration = res.Registration
@@ -65,6 +70,27 @@ angular.module("nccVehicle").controller("vehicleController", function ($scope, $
         $scope.isAdding = false
         $scope.isUpdating = true
 
+    }
+
+
+    $scope.submitEdit = function () {
+        let editedVehicle = {
+                Id: $scope.editVehicleId,
+                Capacity: $scope.editVehicleCapacity,
+                Driver: $scope.editVehicleDriver,
+                Make: $scope.editVehicleMake,
+                Model: $scope.editVehicleModel,
+                Registration: $scope.editVehicleRegistration,
+        }
+
+        $http.put($scope.vehicleAPIUrl, editedVehicle)
+            .success(function () {
+                $scope.isUpdating = false
+                $scope.init()
+            })
+            .error(function (error) {
+                $scope.errorMessage = error;
+            })
     }
 
     $scope.delVehicle = function (Id) {
